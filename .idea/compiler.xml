@@ -9,8 +9,8 @@
         <module name="eureka_server" />
         <module name="eureka_server2" />
         <module name="order_service" />
-        <module name="order_service2" />
         <module name="product_service" />
+        <module name="product_service2" />
         <module name="test_import" />
       </profile>
     </annotationProcessing>
@@ -18,7 +18,6 @@
       <module name="eureka_server3" target="1.8" />
       <module name="import_test" target="1.8" />
       <module name="order_server2" target="1.8" />
-      <module name="product_service2" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
