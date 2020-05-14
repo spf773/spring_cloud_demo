@@ -1,0 +1,24 @@
+server:
+  port: 9011
+spring:
+  application:
+    name: product-service # 商品服务
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_cloud_test?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: mysql123
+  jpa:
+    database: mysql
+    show-sql: true
+    open-in-view: true
+#配置EurekaClient
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/ #多个eurekaServer之间用,隔开
+  instance:
+    prefer-ip-address: true #使用ip地址注册
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #像注册中心注册服务id
+    lease-renewal-interval-in-seconds: 5 #设置心跳时间，EurekaClient 每5秒向EurekaServer发送一次心跳
+    lease-expiration-duration-in-seconds: 10 #设置服务过期时间，如果10秒内没有向EurekaServer 发送心跳，则EurekaServer剔除此服务
