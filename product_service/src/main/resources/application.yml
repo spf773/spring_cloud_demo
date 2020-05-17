@@ -12,13 +12,34 @@ spring:
     database: mysql
     show-sql: true
     open-in-view: true
+  ##开始配置consul的服务发现
+  cloud:
+    consul:
+      host: 127.0.0.1 #consul 服务器的主机地址
+      port: 8500 # consul服务器的端口
+      discovery:
+        #是否需要注册(默认为true)
+        register: true
+        #注册的实例ID(唯一标志)
+        instance-id: ${spring.application.name}-1
+        #服务的名称
+        service-name: ${spring.application.name}
+        #服务的请求端口
+        port: ${server.port}
+        #指定开启IP地址注册
+        prefer-ip-address: true
+        #当前服务的请求ip
+        ip-address: ${spring.cloud.client.ip-address}
+
+
 #配置EurekaClient
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:9000/eureka/ #多个eurekaServer之间用,隔开
-  instance:
-    prefer-ip-address: true #使用ip地址注册
-    instance-id: ${spring.cloud.client.ip-address}:${server.port} #像注册中心注册服务id
-    lease-renewal-interval-in-seconds: 5 #设置心跳时间，EurekaClient 每5秒向EurekaServer发送一次心跳
-    lease-expiration-duration-in-seconds: 10 #设置服务过期时间，如果10秒内没有向EurekaServer 发送心跳，则EurekaServer剔除此服务
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:9000/eureka/ #多个eurekaServer之间用,隔开
+#  instance:
+#    prefer-ip-address: true #使用ip地址注册
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port} #向注册中心注册服务id
+#    lease-renewal-interval-in-seconds: 5 #设置心跳时间，EurekaClient 每5秒向EurekaServer发送一次心跳
+#    lease-expiration-duration-in-seconds: 10 #设置服务过期时间，如果10秒内没有向EurekaServer 发送心跳，则EurekaServer剔除此服务
+

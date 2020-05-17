@@ -2,8 +2,6 @@ package cn.itcast.order.controller;
 
 import cn.itcast.order.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +21,8 @@ public class OrderController {
      *      SpringCloud提供的获取元数据的工具类
      *      调用方法获取服务的元数据信息
      */
-    @Autowired
-    private DiscoveryClient discoveryClient;
+//    @Autowired
+//    private DiscoveryClient discoveryClient;
 
 
     /**
@@ -37,6 +35,8 @@ public class OrderController {
     @RequestMapping("/buy/{id}")
     public Product findById(@PathVariable("id") Long id){
 
+//        Product product = restTemplate.getForObject("http://product-service/product/" + id,Product.class);
+        // TODO: 2020/5/17 测试consul
         Product product = restTemplate.getForObject("http://product-service/product/" + id,Product.class);
         return product;
     }

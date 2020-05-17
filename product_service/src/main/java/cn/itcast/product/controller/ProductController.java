@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
 
 
-    @Value("${spring.cloud.client.ip-address}")
-    private String ip;
-
-    @Value("${server.port}")
-    private String port;
+//    @Value("${spring.cloud.client.ip-address}")
+//    private String ip;
+//
+//    @Value("${server.port}")
+//    private String port;
 
     @Autowired
     private ProductService productService;
@@ -27,7 +27,7 @@ public class ProductController {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public Product findById(@PathVariable Long id){
         Product product = productService.findById(id);
-        product.setProductName("你访问的地址：" + ip + ":" + port);
+//        product.setProductName("你访问的地址：" + ip + ":" + port);
         return product;
     }
 
