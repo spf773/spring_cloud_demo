@@ -14,9 +14,8 @@
         <module>order_service</module>
         <module>eureka_server</module>
         <module>eureka_server2</module>
-        <module>test_import</module>
+        <!--<module>test_import</module>-->
     </modules>
-
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -56,6 +55,23 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 
     <dependencyManagement>
         <dependencies>
