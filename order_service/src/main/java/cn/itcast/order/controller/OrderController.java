@@ -22,8 +22,8 @@ public class OrderController {
     @Autowired
     private ProductFeignClient productFeignClient;
 
-//    @Autowired
-//    private RestTemplate restTemplate;
+    @Autowired
+    private RestTemplate restTemplate;
 
     /**
      * 注入DiscoveryClient:
@@ -32,6 +32,20 @@ public class OrderController {
      */
 //    @Autowired
 //    private DiscoveryClient discoveryClient;
+
+    @RequestMapping("/buy/{id}")
+    public Product findById(@PathVariable("id") Long id){
+//
+        Product product = restTemplate.getForObject("http://192.168.1.5:9001/product/" + id,Product.class);
+//        // TODO: 2020/5/17 测试consul
+//        Product product = restTemplate.getForObject("http://product-service/product/" + id,Product.class);
+        return product;
+    }
+
+    @RequestMapping("/{id}")
+    public String findProduct(@PathVariable("id") Long id){
+        return "根据id查询信息";
+    }
 
 
     /**

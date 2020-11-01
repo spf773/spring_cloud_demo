@@ -24,11 +24,11 @@ public class OrderApplication {
      * 向其中集成了Ribbon的支持，所以加上@LoadBalanced注解就可以使用Ribbon
      *@return
      */
-//    @Bean
+    @Bean
 //    @LoadBalanced
-//    public RestTemplate restTemplate(){
-//        return new RestTemplate();
-//    }
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(OrderApplication.class);
