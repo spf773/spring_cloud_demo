@@ -1,5 +1,10 @@
 server:
   port: 9002
+  tomcat:
+    #maxThreads（最大线程数）
+    #每一次HTTP请求到达Web服务器，Web服务器都会创建一个线程来处理该请求，该参数决定了应用服务同时可以处理多少个HTTP请求，tomcat默认为200；
+    #模拟高并发测试
+    max-threads: 10
 spring:
   application:
     name: order-service # 订单服务
