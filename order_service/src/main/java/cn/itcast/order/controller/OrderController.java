@@ -1,5 +1,6 @@
 package cn.itcast.order.controller;
 
+import cn.itcast.order.command.OrderCommand;
 import cn.itcast.order.entity.Product;
 import cn.itcast.order.feign.ProductFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +37,18 @@ public class OrderController {
     @RequestMapping("/buy/{id}")
     public Product findById(@PathVariable("id") Long id){
 //
-        Product product = restTemplate.getForObject("http://192.168.1.5:9001/product/" + id,Product.class);
+//        Product product = restTemplate.getForObject("http://192.168.1.5:9001/product/" + id,Product.class);
 //        // TODO: 2020/5/17 测试consul
 //        Product product = restTemplate.getForObject("http://product-service/product/" + id,Product.class);
+
+        // TODO: 2020/11/4 测试线程池服务隔离
+        Product product = new OrderCommand(restTemplate,id).execute();
         return product;
     }
 
     @RequestMapping("/{id}")
     public String findProduct(@PathVariable("id") Long id){
+        System.out.println(Thread.currentThread().getName());
         return "根据id查询信息";
     }
 

@@ -14,7 +14,6 @@
         <module>order_service</module>
         <module>eureka_server</module>
         <module>eureka_server2</module>
-        <!--<module>test_import</module>-->
     </modules>
 
     <parent>
